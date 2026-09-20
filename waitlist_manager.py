@@ -1,15 +1,20 @@
 # Create a Node class to represent each customer in the waitlist
 class Node:
+
     '''
     A class representing a node in a linked list.
     Attributes:
         name (str): The name of the customer.
         next (Node): A reference to the next node in the list.
     '''
+        
+    def __init__(self, name):
+        self.name = name
+        self.next = None
     
-    
-
-
+example_node = Node("Jessica")
+print(example_node.name)
+print(example_node.next)
 
 # Create a LinkedList class to manage the waitlist
 class LinkedList:
@@ -23,8 +28,33 @@ class LinkedList:
         remove(name): Removes a customer from the waitlist by name.
         print_list(): Prints the current waitlist.
     '''
-    
+    def __init__(self):
+        self.head = None
 
+    def add_front(self, name):
+        new_node = Node(name)
+        new_node.next = self.head
+        self.head = new_node
+
+    def add_end(self, name):
+        new_node = Node(name)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+
+
+example_linked_list = LinkedList()
+example_linked_list.add_end("Jessica")
+example_linked_list.add_end("Daryl")
+print(example_linked_list.head.name)
+
+
+example_list = LinkedList()
+print(example_list.head)
 
 def waitlist_generator():
     # Create a new linked list instance
